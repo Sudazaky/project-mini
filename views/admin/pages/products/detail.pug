@@ -1,0 +1,47 @@
+extends ../../layouts/default.pug
+
+block main 
+    .box-detail 
+      .box-chilren
+        p.box-title Thông tin cập nhập
+        div
+          p.box-labl Ngày tạo: 
+          span.box-time  #{objeactDate.time} - #{objeactDate.date}
+        div
+          p.box-labl Cập nhập mới:
+          span.box-time  #{objeactDate.updateTime} - #{objeactDate.updateDate}
+
+      .box-chilren 
+        p.box-title Thông tin cơn bản
+        div
+          p.box-labl Trạng thái: 
+          - if(product.status == "active") 
+            span.box-status  Hoạt động
+          - else 
+            span.box-status-danger  Dừng hoạt động
+        div 
+          p.box-labl Vị trí:
+          span.box-position  #{product.position}
+        
+    .box-detail
+      .box-chilren 
+        p.box-title Giá và phiên bản sản phẩm
+        div
+          p.box-labl Giá: 
+          span.box-price  #{product.price}$
+        div
+          p.box-labl Giá đặc biệt: 
+          span.box-price  #{product.priceNew}$
+        div
+          p.box-labl Ảnh sản phẩm: 
+           div.box-image 
+            img(src=product.thumbnail, alt=product.title)
+        div
+          p.box-labl Số lượng sẵn có: 
+           span.box-stock #{product.stock}
+
+    .box-detail
+      .box-chilren 
+        p.box-title Thông tin sản phẩm
+
+    
