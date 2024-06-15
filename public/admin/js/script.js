@@ -96,7 +96,7 @@ if(uploadImage) {
         uploadImageInput.value = "";
         uploadImagePreview.src = "";
         buttonClosePreview.classList.add("d-none");
-      })
+      });
     }
   })
 }

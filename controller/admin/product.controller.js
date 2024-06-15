@@ -138,9 +138,9 @@ module.exports.createItemPost = async (req, res) => {
   }
 
   // console.log(req.file);
-  if(req.file) {
-    req.body.thumbnail = `http://localhost:3000/uploads/${req.file.filename}`; 
-  }
+  // if(req.file) {
+  //   req.body.thumbnail = `http://localhost:3000/uploads/${req.file.filename}`; 
+  // }
   const product = new Product(req.body);
   await product.save();
   req.flash('success', 'Tạo sản phẩm thành công');
