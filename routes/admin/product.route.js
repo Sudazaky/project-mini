@@ -34,7 +34,7 @@ router.post('/create',
 
 router.get('/edit/:id', controller.editItem);
 
-router.patch('/edit/:id', upload.single('thumbnail'), validate.createPost, controller.editItemPatch);
+router.patch('/edit/:id', upload.single('thumbnail'), uploadCloud.upload, validate.createPost, controller.editItemPatch);
 
 router.get('/detail/:id', controller.detailItem);
 

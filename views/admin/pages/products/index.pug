@@ -3,6 +3,7 @@ include ../../mixins/filterStatus
 include ../../mixins/formSearch 
 include ../../mixins/pagination 
 include ../../mixins/alert 
+include ../../mixins/sort
 
 block main 
   +alert-success(2000)  
@@ -15,6 +16,13 @@ block main
       .row.align-items-center
         +filterStatus(filterStatus)        
         +formSearch(keyword)
+  
+  .card.mb-3 
+    .card-header Sắp xếp
+    .card-body
+      .row
+        .col-4
+          +sort()
 
   div.row
     div.col-6

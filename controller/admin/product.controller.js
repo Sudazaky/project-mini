@@ -31,10 +31,18 @@ module.exports.index = async (req, res) => {
     currentPage: 1,
     limitItems: 4
   }, req.query, countProducts)
-
   // End Pagination
+
+  // Sort
+  let sort = {};
+  if(req.query.sortKey && req.query.sortValue) {
+    sort[req.query.sortKey] = req.query.sortValue
+  } else {
+    sort.position = "desc"
+  }
+  // End Sort
   // console.log(objeactPagination);
-  const product = await Product.find(find).sort({position:"desc"}).limit(objeactPagination.limitItems).skip(objeactPagination.skip);
+  const product = await Product.find(find).sort(sort).limit(objeactPagination.limitItems).skip(objeactPagination.skip);
   const productDeleted = await Product.find({deleted: true});
   res.render('./admin/pages/products/index', {
     pageTitle: "Danh sách sản phẩm",
@@ -174,9 +182,9 @@ module.exports.editItemPatch = async (req, res) => {
   req.body.position = parseInt(req.body.position);
   
   // console.log(req.body);
-    if(req.file) {
-      req.body.thumbnail = `http://localhost:3000/uploads/${req.file.filename}`; 
-    }
+    // if(req.file) {
+    //   req.body.thumbnail = `http://localhost:3000/uploads/${req.file.filename}`; 
+    // }
   try {
     await Product.updateOne({ _id: id }, req.body);
   } catch (error) {
