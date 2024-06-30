@@ -54,8 +54,14 @@
 /* End Sider */
 
 /* Table */
-.table tbody td {
+.table tbody .align-center {
   line-height: 80px;
+  
+}
+
+.table tbody .align-centers {
+  line-height: 40px;
+  
 }
 /* End table */
 
@@ -92,7 +98,7 @@
 }
 /* End Alert */
 
-.modal {
+/* .modal {
   background: #00000080;
   position: fixed;
   top: 0;
@@ -121,7 +127,7 @@
   top: 0;
   right: 0;
   cursor: pointer;
-}
+} */
 
 /* Preview */
 .image-preview {

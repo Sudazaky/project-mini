@@ -1,0 +1,54 @@
+extends ../../layouts/default.pug
+
+block main
+  if(role.permissions.includes("roles_view"))
+    .card.mb-3 
+      .card-header Nhóm quyền
+      .card-body
+        .row
+          .col-8 
+          if(role.permissions.includes("roles_create"))
+            .col-4 
+              a(
+                href=`/${prefixAdmin}/roles/create`
+                class="btn btn-outline-success mb-3"
+              ) + Thêm mới
+        if(record.length > 0)
+          table(
+            class="table table-hover table-sm"
+          ) 
+            thead 
+              tr
+                th STT
+                th Tiêu đề
+                th Mô tả
+                th Hành động
+            tbody
+              each item, index in record
+                tr 
+                  td #{index + 1}
+                  td #{item.title}
+                  td #{item.description}
+                  td
+                    a(
+                      href=`/${prefixAdmin}/roles/detail/${item.id}`
+                    )
+                      button(
+                        class="bth btn-secondary btn-sm"
+                      ) Chi tiết
+                    if(role.permissions.includes("roles_edit"))
+                      a(
+                        href=`/${prefixAdmin}/roles/edit/${item.id}`
+                      )
+                        button(
+                          class="bth btn-warning btn-sm ml-1"
+                        ) Sửa
+                    if(role.permissions.includes("roles_delete"))
+                      button(
+                        class="bth btn-danger btn-sm ml-1"
+                        data-id=item.id
+                        button-delete
+                      ) Xoá
+  else
+    div Chưa có quyền truy cập
+            

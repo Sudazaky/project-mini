@@ -136,3 +136,15 @@ if(sort) {
   }
 }
 // End Sort
+
+
+// Disabled
+const formDisabled = document.querySelector("[form-disabled]");
+const buttonForm = document.querySelector("[button-form]");
+if(formDisabled) {
+  formDisabled.addEventListener('submit', () => {
+    buttonForm.disabled = true;
+  });
+}
+// End Disabled
+

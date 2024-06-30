@@ -69,8 +69,8 @@ if(formChangeMulti) {
     const changeType = e.target.elements.type.value;
     // console.log(changeType);
     if(changeType == "delete-all") {
-      const isConfim = confirm("Bạn có chắc muốn xoá?");
-      if(!isConfim) {
+      const isConfirm = confirm("Bạn có chắc muốn xoá?");
+      if(!isConfirm) {
         return;
       }
     }
