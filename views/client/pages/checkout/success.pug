@@ -1,0 +1,52 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+
+block main 
+  .container.my-3
+    .row
+      .col-12
+        +box-head("Đặt hàng thành công")
+    .row 
+      .col-12 
+        div(class="alert alert-success")
+          | Bạn đã đặt hàng thành công! Chúng tôi sẽ xử lý đơn hàng trong thời gian sớm nhất
+    if(orderDetail)
+      .row
+      .col-12
+        h4(class="mb-2") Thông tin cá nhân
+        table(class="table table-bordered")
+          tdoty
+            tr
+              td Họ tên 
+              td #{orderDetail.userInfo.fullName}
+            tr
+              td Số điện thoại
+              td #{orderDetail.userInfo.phone}
+            tr
+              td Địa chỉ
+              td #{orderDetail.userInfo.address}
+            
+      .row 
+      .col-12
+        h4(class="mb-2") Thông tin cá nhân
+        table(class="table table-bordered")
+          thead 
+            tr
+              th.text-center STT 
+              th.text-center Ảnh
+              th.text-center Tên
+              th.text-center Giá
+              th.text-center Số lượng
+              th.text-center Thành tiền
+          tbody 
+            each item, index in orderDetail.products
+              tr 
+                td.text-center #{index + 1}
+                td.text-center 
+                  img(src=item.productInfo.thumbnail, alt=item.productInfo.title
+                  width="80px")
+                td.text-left #{item.productInfo.title}
+                td.text-center #{item.priceNew}
+                td.text-center #{item.quantity}
+                td.text-center #{item.totalPrice}$
+        h3(class="text-right") Tổng hơn hàng: #{orderDetail.totalPrice}$

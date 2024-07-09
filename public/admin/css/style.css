@@ -59,6 +59,11 @@
   
 }
 
+.table tbody .align-center img {
+  max-height: 90px;
+  object-fit: contain;
+}
+
 .table tbody .align-centers {
   line-height: 40px;
   

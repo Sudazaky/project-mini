@@ -39,25 +39,48 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
+  position: relative;
 }
 
-
-product-item .inner-image {
+.product-item .inner-image {
   width: 100%;
-  height: 100%;
+  padding: 10px;
 }
+
+.product-item .inner-image .inner-featured {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: green;
+  color: white;
+  padding: 3px 6px;
+  font-weight: 600;
+  font-size: 13px;
+  border-radius: 8px;
+}
+
 .product-item .inner-image img {
   width: 100%;
-  height: 100%;
-  aspect-ratio: 4/3;
+  max-height: 200px;
+  object-fit: contain;
 }
 
 .product-item .inner-content {
   padding: 20px;
 }
 
+/* CSS text-overflow: ellipsis; not working? */
 .product-item .inner-content .inner-title {
   font-size: 20px;
+  width: calc(100% - 10px);
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  margin: 0 5px 0 5px;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .product-item .inner-content .inner-price-new {
@@ -130,3 +153,63 @@ a {
   display: block;
 }
 /* End Sub-menu */
+
+/* Product Detail */
+
+.product-detail .inner-thmub {
+  width: 100%;
+}
+
+.product-detail .inner-thmub img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+}
+
+.product-detail .inner-title {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.product-detail .inner-category {
+  margin-bottom: 10px;
+}
+
+.product-detail .inner-price-new {
+  color: green;
+  font-weight: 600;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.product-detail .inner-price-old {
+  color: red;
+  font-weight: 600;
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-decoration: line-through;
+}
+
+.product-detail .inner-percent span {
+  color: red;
+}
+
+.product-detail .inner-stock span {
+  color: green;
+}
+/* End Product Detail */
+
+
+/* Custon Table */
+
+.table td {
+  vertical-align: middle;
+}
+/* End Custon Table */
+
+/* Exist Email */
+.existEmail {
+  font-size: 12px;
+  color: red;
+}
+/* End Exist Email */

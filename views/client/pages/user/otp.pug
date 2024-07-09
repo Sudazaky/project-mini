@@ -1,0 +1,38 @@
+extends ../../layouts/default.pug
+
+block main
+  .container.my-5
+    .row.justify-content-center
+      .col-8
+        h2(class="text-left") Nhập mã OTP xác nhận
+        form(
+          action=`/user/password/otp`
+          method="POST"
+        )
+          div(class="form-group")
+            label(for="email") Email
+            input(
+              type="email"
+              id="email"
+              name="email"
+              class="form-control"
+              value=email
+              readonly
+            )
+          div(class="form-group")
+            label(for="otp") OTP
+            input(
+              type="text"
+              id="otp"
+              name="otp"
+              class="form-control"
+              required
+            )
+            - if (messages.wrongEmail)
+              .message.existEmail
+                span= messages.wrongEmail
+          div(class="form-gruop")
+            button(
+              type="submit"
+              class="btn btn-primary btn-block"
+            ) Xác nhận

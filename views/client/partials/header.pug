@@ -7,8 +7,23 @@ header.header
         .inner-logo
           a(href="/")
             img(src="/images/logo.jpeg", alt="logo")
-
-      .col-9
+      .col-4
+        form(
+          action="/search"
+          method="GET"
+        )
+          div(class="form-group d-flex mb-0")
+            input(
+              type="text"
+              placeholder="Nhập từ khoá..."
+              class="form-control"
+              name="keyword"
+            )
+            button(
+              type="submit"
+              class="btn btn-primary"
+            ) Tìm
+      .col-5
         .inner-menu
           ul
             li
@@ -17,6 +32,8 @@ header.header
               a(href="/products") Sản phẩm
               - const path = "/products"
               +sub-menu(layoutProductsCategory, path)
+            li
+              a(href="/cart") Giỏ hàng(#{miniCart ? miniCart.totalQuantity : 0})
               //- ul
               //-   li
               //-     a(href="/products/slug-1") Mục 1
@@ -32,3 +49,9 @@ header.header
               //-             a(href="/products/slug-1-2-2") Mục 1-2-2
               //-   li
               //-     a(href="/products/slug-2") Mục 2
+            if(user)
+              li
+              a(href="/user/logout") Đăng xuất
+            else 
+              li
+                a(href="/user/login") Đăng nhập

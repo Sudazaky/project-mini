@@ -1,0 +1,44 @@
+extends ../../layouts/default.pug
+
+block main
+  .container.my-5
+    .row.justify-content-center
+      .col-8
+        h2(class="text-left") Đăng nhập
+        form(
+          action=`/user/login`
+          method="POST"
+        )
+          div(class="form-group")
+            label(for="email") Email
+            input(
+              type="email"
+              id="email"
+              name="email"
+              class="form-control"
+              required
+            )
+            - if (messages.wrongEmail)
+              .message.existEmail
+                span= messages.wrongEmail
+          div(class="form-group")
+            label(for="password") Mật khẩu
+            input(
+              type="password"
+              id="password"
+              name="password"
+              class="form-control"
+              required
+            )
+            - if (messages.wrongPassword)
+              .message.existEmail
+                span= messages.wrongPassword
+          div(class="form-gruop")
+            button(
+              type="submit"
+              class="btn btn-primary"
+            ) Đăng nhập
+        .row
+          .col-12.d-flex.justify-content-between
+            a(href="/user/password/forgot") Quên mật khẩu?
+            a(href="/user/register") Đăng ký
