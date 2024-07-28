@@ -1,5 +1,6 @@
 const User = require('../../models/user.model');
 const ForgotPassword = require('../../models/forgot-password.model');
+const Cart = require('../../models/cart.model');
 const md5 = require('md5');
 const generateHelpers = require('../../helpers/generateToken');
 
@@ -23,6 +24,14 @@ module.exports.registerPost = async (req, res) => {
     const user = new User(req.body);
     user.save();
     res.cookie("tokenUser", user.tokenUser);
+
+    const existCart = await Cart.findOne({ userId: user.id });
+    if(!existCart) {
+      await Cart.updateOne({ _id: req.cookies.cartId }, { userId: user.id });
+    } else {
+      res.cookie('cartId', existCart.id);
+    }
+
     res.redirect("/");
   }
 };
@@ -40,6 +49,15 @@ module.exports.loginPost = async (req, res) => {
   if(user) {
     if(user.password === md5(req.body.password)) {
       res.cookie("tokenUser", user.tokenUser);
+      const existCart = await Cart.findOne({ userId: user.id });
+      if(!existCart) {
+        await Cart.updateOne({ _id: req.cookies.cartId }, { userId: user.id });
+      } else {
+        // console.log(existCart);
+        // res.clearCookie("test");
+        res.cookie('cartId', existCart.id);
+      }
+
       res.redirect('/');
       return;
     } else {
@@ -47,7 +65,6 @@ module.exports.loginPost = async (req, res) => {
       res.redirect('back');
       return;
     }
-    
   } else {
     req.flash("wrongEmail", "Email không tồn tại");
     res.redirect('back');
@@ -57,6 +74,7 @@ module.exports.loginPost = async (req, res) => {
 // [GET] /user/logout
 module.exports.logout = (req, res) => {
   res.clearCookie("tokenUser");
+  res.clearCookie("cartId");
   res.redirect("/user/login");
 };
 

@@ -8,7 +8,16 @@ block main
         form(
           action=`/user/register`
           method="POST"
-        )
+        ) 
+          div(class="form-group")
+            label(for="fullName") Họ tên
+            input(
+              type="text"
+              id="fullName"
+              name="fullName"
+              class="form-control"
+              required
+            )
           div(class="form-group")
             label(for="email") Email
             input(

@@ -1,0 +1,67 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+
+block main 
+  .container.my-3 
+    .row
+      .col-12
+        +box-head("Chat")
+
+    .row
+      .col-12
+        .chat(my-id=user.id)
+          .inner-body
+            each item in chat
+              div(class=(item.userId === user.id ? "inner-outgoing" : "inner-incoming"))
+                if(item.userId !== user.id)
+                  .inner-name #{item.fullName}
+                .inner-content
+                  | #{item.content}
+            div(class="inner-list-typing")
+              //- div(class="box-typing")
+              //-   div(class="inner-name") Lê Văn A
+              //-   div(class="inner-dots")
+              //-     span
+              //-     span
+              //-     span
+            //- div(class="inner-list-typing")
+            //-   div(class="box-typing")
+            //-     div(class="inner-name") Lê Văn B
+            //-     div(class="inner-dots")
+            //-       span
+            //-       span
+            //-       span
+            //- .inner-outgoing 
+            //-   .inner-content
+            //-     | Thế à? Ok e iu
+            //- .inner-incoming 
+            //-   .inner-name Em yêu
+            //-   .inner-content
+            //-     | Nhanh nha, nhanh nha 
+            //- .inner-outgoing 
+            //-   .inner-content
+            //-     | Ck đến rồi mà thấy ai ở nhà đâu e? Khoá của mà :(
+            //- .inner-incoming 
+            //-   .inner-name Em yêu
+            //-   .inner-content
+            //-     | Thì e bảo nhà e không ai ở nhà mà :)
+            //- .inner-outgoing 
+            //-   .inner-content
+            //-     | Địt mẹ em!
+          .inner-foot
+            form(
+              class="inner-form"
+              action=""
+            )
+              input(
+                type="text"
+                placeholder="Nhập nội dung..."
+                name="content"
+              )
+              span(class="buttonIcon btn btn-light mx-2")
+                i(class="fa-regular fa-face-smile")
+              button
+                i.fa-solid.fa-paper-plane
+  div(class="tooltip" role="tooltip")
+    emoji-picker(class="light")
+        

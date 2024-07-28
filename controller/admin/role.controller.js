@@ -53,15 +53,21 @@ module.exports.editPatch = async (req, res) => {
 
 // [GET] admin/roles/permissions
 module.exports.permissions =  async (req, res) => {
-  let find = {
+  const check = res.locals.role.permissions.includes("roles-permissions_view");
+  if(check) {
+    let find = {
     deleted: false
-  };
+    };
 
-  const records = await Role.find(find);
-  res.render("./admin/pages/roles/permissions", {
-    pageTitle: "Phân quyền",
-    records: records
-  });
+    const records = await Role.find(find);
+    res.render("./admin/pages/roles/permissions", {
+      pageTitle: "Phân quyền",
+      records: records
+    });
+  }
+  else {
+    res.redirect(`/${systemConfig.prefixAdmin}/dashboard`);
+  }
 };
 
 // [PATCH] admin/roles/permissions

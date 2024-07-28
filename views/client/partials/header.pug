@@ -1,12 +1,12 @@
 include ../mixins/sub-menu.pug
 
-header.header 
+header.header
   .container
     .row.align-items-center
       .col-3
         .inner-logo
           a(href="/")
-            img(src="/images/logo.jpeg", alt="logo")
+            img(src=settingGeneral.logo, alt=settingGeneral.websiteName)
       .col-4
         form(
           action="/search"
@@ -32,6 +32,9 @@ header.header
               a(href="/products") Sản phẩm
               - const path = "/products"
               +sub-menu(layoutProductsCategory, path)
+            if(user)
+              li
+                a(href="/chat") Chat
             li
               a(href="/cart") Giỏ hàng(#{miniCart ? miniCart.totalQuantity : 0})
               //- ul
